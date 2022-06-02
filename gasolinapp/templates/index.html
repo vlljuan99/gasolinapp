@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% block active_home %}
+active
+{% endblock %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="mt-2 p-5">
+
+
+    <div class="card text-center mt-6">
+
+        <h4 class="card-header text-white bg-dark">
+            ¡Bienvenid@ a GASOLIN<strong>APP</strong>!
+        </h4>
+
+        <div class="card-body pb-1">
+            <h5 class="card-title">Esta página web se actualiza con los precios de todas las gasolineras españolas,
+                puedes buscar la ciudad que quieras y te mostraremos la gasolinera más barata de dicha ciudad</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+
+            <li class="list-group-item">
+                <h5>Ingeniería de Sistemas de Información - Universidad de Granada - Curso 2021/22
+            </li>
+            <li class="list-group-item">Aquí puedes acceder a un <a
+                    href="https://elvex.ugr.es/decsai/information-systems/index.html#syllabus">enlace</a> con más
+                información sobre la
+                asignatura</li>
+            <li class="list-group-item">La información necesaria para tener actualizadas nuestras distintas bases de
+                datos puede verse en <a href="">esta documentación</a></li>
+
+            <li class="list-group-item">Página desarrolada íntegramente por Juan Ignacio Villegas Llano y Augusto Garzón
+                Moleón</li>
+        </ul>
+    </div>
+
+    <div class="container mt-5" style="max-width: 100%;">
+        <div class="row">
+            <div class="col-sm" style="min-height:100%">
+                <div class="card border-dark" style="min-height:100%; background-color: #e8ebed;">
+                    <div class="card-body">
+                        <h4 class="card-header text-white bg-dark text-center rounded-lg"> <strong>RANKING
+                                DIESEL</strong></h4>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card text-center mt-4 border-dark">
+
+                                    <h4 class="card-header text-white bg-dark">
+                                        Estación de servicio <br> <strong style="color: #c0c0c0;">2ª MÁS BARATA</strong>
+                                        <br> de
+                                        España
+                                    </h4>
+
+                                    <div class="card-body pb-1">
+                                        <h4 class="card-title" style="color: #c0c0c0;">
+                                            <strong>{{gasolineras_diesel.1.name}}</strong>
+                                        </h4>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{gasolineras_diesel.1.location}} -
+                                                {{gasolineras_diesel.1.province}}</li>
+                                            <li class="list-group-item">{{gasolineras_diesel.1.diesel_A}}€</li>
+                                            <li class="list-group-item"> <a class="btn btn-outline-dark"
+                                                    href="infoGasolinera/{{gasolineras_diesel.1.IDEESS }}">+INFO</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-dark text-center mt-2">
+
+                                    <h4 class="card-header text-white bg-dark">
+                                        Estación de servicio <br> <strong style="color: #ffd700;">MÁS BARATA</strong>
+                                        <br> de
+                                        España
+                                    </h4>
+
+                                    <div class="card-body pb-1">
+                                        <h4 class="card-title" style="color: #ffd700;">
+                                            <strong>{{gasolineras_diesel.0.name}}</strong>
+                                        </h4>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{gasolineras_diesel.0.location}} -
+                                                {{gasolineras_diesel.0.province}}</li>
+                                            <li class="list-group-item">{{gasolineras_diesel.0.diesel_A}}€</li>
+                                            <li class="list-group-item"> <a class="btn btn-outline-dark"
+                                                    href="infoGasolinera/{{gasolineras_diesel.0.IDEESS }}">+INFO</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-center mt-6 border-dark" style="margin-top: 35;">
+
+                                    <h4 class="card-header text-white bg-dark">
+                                        Estación de servicio <br> <strong style="color: #9F7A34;">3ª MÁS BARATA</strong>
+                                        <br> de
+                                        España
+                                    </h4>
+
+                                    <div class="card-body pb-1">
+                                        <h4 class="card-title" style="color: #9F7A34;">
+                                            <strong>{{gasolineras_diesel.2.name}}</strong>
+                                        </h4>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{gasolineras_diesel.2.location}} -
+                                                {{gasolineras_diesel.2.province}}</li>
+                                            <li class="list-group-item">{{gasolineras_diesel.2.diesel_A}}€</li>
+                                            <li class="list-group-item"> <a class="btn btn-outline-dark"
+                                                    href="infoGasolinera/{{gasolineras_diesel.2.IDEESS }}">+INFO</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm" style="min-height:100%">
+                <div class="card border-dark" style="min-height:100%; background-color: #e8ebed;">
+                    <div class="card-body">
+                        <h4 class="card-header text-white bg-dark text-center rounded-lg"> <strong>RANKING
+                                GASOLINA</strong></h4>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card text-center mt-4 border-dark">
+
+                                    <h4 class="card-header text-white bg-dark">
+                                        Estación de servicio <br> <strong style="color: #c0c0c0;">2ª MÁS BARATA</strong>
+                                        <br> de
+                                        España
+                                    </h4>
+
+                                    <div class="card-body pb-1">
+                                        <h4 class="card-title" style="color: #c0c0c0;">
+                                            <strong>{{gasolineras_gasolina.1.name}}</strong>
+                                        </h4>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{gasolineras_gasolina.1.location}} -
+                                                {{gasolineras_gasolina.1.province}}</li>
+                                            <li class="list-group-item">{{gasolineras_gasolina.1.diesel_A}}€</li>
+                                            <li class="list-group-item"> <a class="btn btn-outline-dark"
+                                                    href="infoGasolinera/{{gasolineras_gasolina.1.IDEESS }}">+INFO</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card border-dark text-center mt-2">
+
+                                    <h4 class="card-header text-white bg-dark">
+                                        Estación de servicio <br> <strong style="color: #ffd700;">MÁS BARATA</strong>
+                                        <br> de
+                                        España
+                                    </h4>
+
+                                    <div class="card-body pb-1">
+                                        <h4 class="card-title" style="color: #ffd700;">
+                                            <strong>{{gasolineras_gasolina.0.name}}</strong>
+                                        </h4>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{gasolineras_gasolina.0.location}} -
+                                                {{gasolineras_gasolina.0.province}}</li>
+                                            <li class="list-group-item">{{gasolineras_gasolina.0.diesel_A}}€</li>
+                                            <li class="list-group-item"> <a class="btn btn-outline-dark"
+                                                    href="infoGasolinera/{{gasolineras_gasolina.0.IDEESS }}">+INFO</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-center mt-6 border-dark" style="margin-top: 35;">
+
+                                    <h4 class="card-header text-white bg-dark">
+                                        Estación de servicio <br> <strong style="color: #9F7A34;">3ª MÁS BARATA</strong>
+                                        <br> de
+                                        España
+                                    </h4>
+
+                                    <div class="card-body pb-1">
+                                        <h4 class="card-title" style="color: #9F7A34;">
+                                            <strong>{{gasolineras_gasolina.2.name}}</strong>
+                                        </h4>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{gasolineras_gasolina.2.location}} -
+                                                {{gasolineras_gasolina.2.province}}</li>
+                                            <li class="list-group-item">{{gasolineras_gasolina.2.diesel_A}}€</li>
+                                            <li class="list-group-item"> <a class="btn btn-outline-dark"
+                                                    href="infoGasolinera/{{gasolineras_gasolina.2.IDEESS }}">+INFO</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}

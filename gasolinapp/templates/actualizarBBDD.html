@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+Lista de gasolineras
+{% endblock %}
+
+
+{% block prueba %}
+<p>{{prueba}}</p>
+{% endblock %}
+
+{% block gasolineras %}
+
+<div class="mt-2 p-2">
+  <h5>Datos actualizados el {{estado.fecha}}</h5>
+  <div class="mt-2 p-2">
+    <h4>La base de datos de gasolineras ha sido actualizada correctamente.</h4>
+    <h4>{{estado.validas}} gasolineras válidas.</h4>
+    <h4>{{estado.invalidas}} gasolineras inválidas.</h4>
+  </div>
+</div>
+
+
+{% endblock %}

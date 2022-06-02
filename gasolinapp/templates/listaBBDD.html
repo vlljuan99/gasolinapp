@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Lista de gasolineras
+{% endblock %}
+
+{% block active_lista %}
+active
+{% endblock %}
+
+{% block gasolineras %}
+
+<div class="mt-2 p-2">
+
+
+  <div class="card text-center mt-2">
+
+    <h4 class="card-header text-white bg-dark">
+      Estación de servicio más barata de <strong>DIESEL</strong> en <strong>{{mas_barata_diesel.municipality}}</strong>
+    </h4>
+
+    <div class="card-body pb-1">
+      <h5 class="card-title"> Datos de la gasolinera {{ mas_barata_diesel.name }}, situada en {{ mas_barata_diesel.address }}, {{mas_barata_diesel.municipality }}, {{ mas_barata_diesel.CP }}</h5>
+      <table class="table">
+        <thead>
+          <tr class="text-center ">
+            <th scope="col text-center">HORARIO</th>
+            <th scope="col">TIPO DE VENTA</th>
+            <th scope="col">Rótulo</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">DIESEL A</th>
+            <th scope="col">GASOLINA 95 E5</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center ">
+            <td>{{ mas_barata_diesel.schedule }}</td>
+            <td>{{ mas_barata_diesel.sell_type }}</td>
+            <td>{{ mas_barata_diesel.name }}</td>
+            <td>{{ mas_barata_diesel.address }}</td>
+            <td>{{ mas_barata_diesel.diesel_A }}</td>
+            <td>{{ mas_barata_diesel.gasoline_95_E5 }}</td>
+            <td><a class="btn btn-outline-success" href="{{ link_diesel }}">MAPS</a></td>
+            <td><a class="btn btn-outline-dark" href="infoGasolinera/{{mas_barata_diesel.IDEESS }}">+INFO</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card text-center mt-3">
+    <h4 class="card-header text-white bg-dark">
+      Estación de servicio más barata de <strong>GASOLINA</strong> en <strong>{{ciudad}}</strong>
+    </h4>
+    <div class="card-body pb-1">
+      <h5 class="card-title"> Datos de la gasolinera {{ mas_barata_gasolina.name }}, situada en {{ mas_barata_gasolina.address }}, {{mas_barata_gasolina.municipality }}, {{ mas_barata_gasolina.CP }}</h5>
+      <table class="table">
+        <thead>
+          <tr class="text-center ">
+            <th scope="col">HORARIO</th>
+            <th scope="col">TIPO DE VENTA</th>
+            <th scope="col">Rótulo</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">DIESEL A</th>
+            <th scope="col">GASOLINA 95 E5</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center ">
+            <td>{{ mas_barata_gasolina.schedule }}</td>
+            <td>{{ mas_barata_gasolina.sell_type }}</td>
+            <td>{{ mas_barata_gasolina.name }}</td>
+            <td>{{ mas_barata_gasolina.address }}</td>
+            <td>{{ mas_barata_gasolina.diesel_A }}</td>
+            <td>{{ mas_barata_gasolina.gasoline_95_E5 }}</td>
+            <td><a class="btn btn-outline-success" href="{{ link_gasolina }}">MAPS</a></td>
+            <td><a class="btn btn-outline-dark" href="infoGasolinera/{{mas_barata_gasolina.IDEESS }}">+INFO</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div class="mt-2 p-2">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <h1> Gasolineras de España</h1>
+    </div>
+    <div class="row justify-content-center">
+      <p>Lista completa de estaciones de servicio en España.</p>
+      
+    </div>
+    <div class="row justify-content-center">
+      <p>Actualmente están registradas <strong>{{num}}</strong> gasolineras en la base de datos.</p>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link text-dark" href="?page=1">&laquo; Primera</a></li>
+      <li class="page-item"><a class="page-link text-dark" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+      </li>
+      {% endif %}
+
+      <li class="page-item disabled"><a class="page-link" href="">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
+      
+      {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link text-dark" href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+      <li class="page-item"><a class="page-link text-dark" href="?page={{ page_obj.paginator.num_pages }}">Última</a></li>
+      {% endif %}
+    </ul>
+    <thead class="thead-dark">
+      <tr class="text-center ">
+        <th scope="col">Municipio</th>
+        <th scope="col">CP</th>
+        <th scope="col">Rótulo</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">GASÓLEO A</th>
+        <th scope="col">GASOLINA 95</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for gasolinera in page_obj %}
+      <tr class="text-center ">
+        <td class="align-middle">{{ gasolinera.location }}</td>
+        <td class="align-middle">{{ gasolinera.CP }}</td>
+        <td class="align-middle">{{ gasolinera.name }}</td>
+        <td class="align-middle">{{ gasolinera.address }}</td>
+        <td class="align-middle">{{ gasolinera.diesel_A }}</td>
+        <td class="align-middle">{{ gasolinera.gasoline_95_E5 }}</td>
+        <td class="align-middle"><a class="btn btn-outline-dark" href="infoGasolinera/{{gasolinera.IDEESS }}">+INFO</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li class="page-item"><a class="page-link text-dark" href="?page=1">&laquo; Primera</a></li>
+    <li class="page-item"><a class="page-link text-dark" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Anterior</a>
+    </li>
+    {% endif %}
+
+    <li class="page-item disabled"><a class="page-link" href="">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>
+    
+    {% if page_obj.has_next %}
+    <li class="page-item"><a class="page-link text-dark" href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+    <li class="page-item"><a class="page-link text-dark" href="?page={{ page_obj.paginator.num_pages }}">Última</a></li>
+    {% endif %}
+  </ul>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% load static %}
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% bootstrap_messages %}
+
+<!doctype html>
+<html lang="es">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+
+  <link rel="icon" type="image/png" href="../../static/admin/img/gasolinera.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <title>{% block title %}{% endblock %}</title>
+</head>
+
+<style>
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+main{
+  margin-top: 70px;
+}
+</style>
+
+
+
+<body>
+  <header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="{% url 'index' %}">GASOLIN<strong>APP</strong> </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item {% block active_home %}{% endblock %}">
+            <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item {% block active_lista %}{% endblock %}">
+            <a class="nav-link" href="{% url 'listaBBDD' %}">Lista gasolineras</a>
+          </li>
+
+          {% block mas_barata %}{% endblock %}
+
+        </ul>
+        <ul class="navbar-nav mr-3">
+          <li class="nav-item">
+            <a class="nav-link active">Última actualización de datos: {{info}}</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 md-0" method="POST" action="{% url 'masBarata' %}">
+          
+          {% csrf_token %}
+
+          <input class="form-control mr-sm-2" type="search" aria-label="Search" name="municipality" placeholder="Busca una ciudad">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit" >¡A repostar!</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+  <main>
+
+    {% block content %}{% endblock %}
+    {% block gasolineras %}{% endblock %}
+    
+  </main>
+
+  <footer class="footer">
+    <div class="container text-center">
+      <span class="text-muted">Juan Ignacio Villegas Llano - Augusto Garzón Moleón</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>
